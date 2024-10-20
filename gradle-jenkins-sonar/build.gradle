@@ -28,6 +28,9 @@ dependencies {
 sonar {
 	properties {
 		property("sonar.host.url", "http://ec2-35-175-209-239.compute-1.amazonaws.com:9000")
+		//sonar.pullrequest.branch=feature/my-new-feature
+		property("sonar.pullrequest.branch", "sonar-test")
+		property("sonar.pullrequest.base", "main")
 		property("sonar.projectName", "gradle-jenkins-sonar")
 		property ("sonar.projectKey", "gjs")
 		property ("sonar.login", "admin")
