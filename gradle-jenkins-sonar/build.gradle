@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.4'
 	id 'io.spring.dependency-management' version '1.1.6'
+	id 'jacoco'
 	id "org.sonarqube" version "5.1.0.4882"
 }
 
@@ -24,6 +25,23 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+sonar {
+	properties {
+		property("sonar.host.url", "http://ec2-35-175-209-239.compute-1.amazonaws.com:9000")
+		property("sonar.projectName", "gradle-jenkins-sonar")
+		property ("sonar.projectKey", "gjs")
+		property ("sonar.login", "admin")
+		property ("sonar.password", "_Abcdefg12321")
+		property ("sonar.sources", "src/main/java")
+		property ("sonar.sources", "src/test")
+		property ("sonar.exclusions", "src/main/java/**")
+		property ("sonar.test.exclusions", "src/test/**")
+	}
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+test.finalizedBy jacocoTestReport
+jacocoTestReport.dependsOn test

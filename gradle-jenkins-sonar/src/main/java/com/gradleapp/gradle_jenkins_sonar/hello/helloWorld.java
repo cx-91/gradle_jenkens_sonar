@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class helloWorld {
     @GetMapping("/hi")
     public String index() {
-        return "hello 1";
+        return "hello 1 branch test";
     }
 }
